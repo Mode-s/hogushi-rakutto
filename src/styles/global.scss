@@ -20,6 +20,7 @@ body {
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
 // ――――――――――――――――――――――――― hamburger-menu展開時スクロール不可にする。
 html:has(body.is-nav-open),

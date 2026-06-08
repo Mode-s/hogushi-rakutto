@@ -6,7 +6,7 @@
     <span class="about-circle about-circle--2"></span>
     <span class="about-circle about-circle--3"></span>
   </div>
-  <div class="about inner">
+  <div class="about-inner inner">
     <div class="section-title">
       <h2 class="title">日常を、忘れる時間。</h2>
     </div>
@@ -67,7 +67,7 @@
   }
 
   // ――――――――――――――――――――――――――――――――――――――――
-  .inner .about {
+  .about-inner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -75,28 +75,23 @@
     z-index: 1;
   }
 
-  .section-title {
-    
-  }
-
   .about .title {
     position: relative;
     display: inline-block;
-    text-align: center;
 
 
     &::after {
-    content: '';
-    position: absolute;
-    left: -0.1em;          // 左右を少しはみ出させるとマーカーらしい
-    right: -0.1em;
-    bottom: 0.15em;
-    height: 0.55em;        // 文字の下半分を塗る
-    background-color: $color-cta;
-    opacity: 0.75;         // 蛍光ペンっぽい透け感
-    z-index: -1;           // 文字の背面に
-    border-radius: 2px;    // 角を少し丸めると柔らかい
-  }
+      content: '';
+      position: absolute;
+      left: -0.1em;          // 左右を少しはみ出させるとマーカーらしい
+      right: -0.1em;
+      bottom: 0.15em;
+      height: 0.55em;        // 文字の下半分を塗る
+      background-color: $color-cta;
+      opacity: 0.75;         // 蛍光ペンっぽい透け感
+      z-index: -1;           // 文字の背面に
+      border-radius: 2px;    // 角を少し丸めると柔らかい
+    }
   }
 
   .about-body {

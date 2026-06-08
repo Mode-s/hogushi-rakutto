@@ -1,9 +1,27 @@
 ---
+import { Icon } from 'astro-icon/components';
 ---
 <section class="section contact" id="contact">
-  <div class="inner contact">
+  <div class="contact-inner inner">
     <div class="section-title">
-      <h2 class="title"></h2>
+      <h2 class="title">お問い合わせ</h2>
+    </div>
+    <p class="contact-lead">ご予約・ご相談はお電話、またはInstagramのDMよりお気軽にどうぞ。<br class="pc-only" />お身体のお悩みやご希望に合わせて、ていねいにご案内いたします。</p>
+    <div class="contact-methods">
+      <a class="contact-card" href="tel:0242937248">
+        <Icon class="cta-icon" name="mdi:phone" />
+        <span class="contact-card-body">
+          <span class="contact-card-label">お電話でのご予約・お問い合わせ</span>
+          <span class="contact-card-value">0242-93-7248</span>
+        </span>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/hogushichurakutsuto?igsh=dzFkdXdyb3U5Zmhs" target="_blank" rel="noopener noreferrer">
+        <Icon class="cta-icon" name="simple-icons:instagram" />
+        <span class="contact-card-body">
+          <span class="contact-card-label">Instagramからのお問い合わせ</span>
+          <span class="contact-card-value">@hogushichurakutsuto</span>
+        </span>
+      </a>
     </div>
   </div>
 </section>
@@ -12,9 +30,75 @@
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
 
-  // ―――――――――――――――――――――――――――――――――――
-  .section {
+  .contact-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  // ―――――――――――――――――――――――――――――――――――
+  .contact .title {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -0.1em;
+      right: -0.1em;
+      bottom: 0.15em;
+      height: 0.55em;
+      background-color: $color-cta;
+      opacity: 0.75;
+      z-index: -1;
+      border-radius: 2px;
+    }
+  }
+
+  .contact-lead {
+    font-size: 0.8rem;
+    line-height: 2;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    width: 100%;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    background-color: $color-cta;
+
+    @include hover-lift;
+  }
+
+  .cta-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-card-label {
+    font-size: 0.75rem;
+    font-weight: normal;
+    opacity: 0.8;
+  }
+
+  .contact-card-value {
+    letter-spacing: 0.09em;
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
@@ -24,6 +108,14 @@
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / スマホ
   @include sp {
-
+    .contact-card {
+      padding: 16px 18px;
+    }
+    .contact-card-label {
+      font-size: 0.65rem;
+    }
+    .contact-card-value {
+      font-size: 0.9rem;
+    }
   }
 </style>
