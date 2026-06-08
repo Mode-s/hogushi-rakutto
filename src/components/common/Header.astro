@@ -64,9 +64,11 @@ const navItems = [
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 110;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &.is-scrolled {
+      background-color: $color-bg;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
       backdrop-filter: blur(6px);
     }
@@ -79,7 +81,7 @@ const navItems = [
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 0px 40px;
   }
   // ――――――――――――――――――――――――――――――――――― header-logo
   .header .logo {
@@ -99,6 +101,7 @@ const navItems = [
     display: flex;
     align-items: center;
     gap: 28px;
+    font-size: 0.8rem;
     font-weight: bold;
   }
   // ――――――――――――――――――――――――――――――――――― header nav-link
@@ -121,10 +124,11 @@ const navItems = [
     height: 44px;
     padding: 0;
     border-radius: 50%;
-    background-color: #fde287;
+    background-color: $color-cta;
     color: #000;
     line-height: 1;
     transition: opacity 0.2s ease;
+    
 
     @include hover-lift;
   }
