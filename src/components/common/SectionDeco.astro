@@ -1,0 +1,50 @@
+---
+---
+<div class="section-deco" aria-hidden="true">
+  <span class="section-circle section-circle--1"></span>
+  <span class="section-circle section-circle--2"></span>
+  <span class="section-circle section-circle--3"></span>
+</div>
+
+<style lang="scss">
+  @use "../../styles/variables" as *;
+
+  .section-deco {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .section-circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: $color-cta;
+    opacity: 0.35;
+    filter: blur(40px);
+  }
+
+  .section-circle--1 {
+    width: 280px;
+    height: 280px;
+    top: -60px;
+    left: -80px;
+  }
+
+  .section-circle--2 {
+    width: 200px;
+    height: 200px;
+    top: 40%;
+    right: -40px;
+    opacity: 0.25;
+    filter: blur(50px);
+  }
+
+  .section-circle--3 {
+    width: 160px;
+    height: 160px;
+    bottom: 10%;
+    left: 20%;
+    background-color: rgba($color-cta, 0.8);
+  }
+</style>

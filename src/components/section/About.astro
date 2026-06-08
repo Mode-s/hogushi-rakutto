@@ -1,11 +1,8 @@
 ---
+import SectionDeco from '../common/SectionDeco.astro';
 ---
 <section class="section about" id="about">
-  <div class="about-deco" aria-hidden="true">
-    <span class="about-circle about-circle--1"></span>
-    <span class="about-circle about-circle--2"></span>
-    <span class="about-circle about-circle--3"></span>
-  </div>
+  <SectionDeco />
   <div class="about-inner inner">
     <div class="section-title">
       <h2 class="title">日常を、忘れる時間。</h2>
@@ -21,50 +18,6 @@
 <style lang="scss">
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
-
-  // ――――――――――――――――――――――――――――――――――――――――
-  .about {
-    position: relative;
-  }
-
-  .about-deco {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .about-circle {
-    position: absolute;
-    border-radius: 50%;
-    background-color: $color-cta;
-    opacity: 0.35;
-    filter: blur(40px);
-  }
-
-  .about-circle--1 {
-    width: 280px;
-    height: 280px;
-    top: -60px;
-    left: -80px;
-  }
-
-  .about-circle--2 {
-    width: 200px;
-    height: 200px;
-    top: 40%;
-    right: -40px;
-    opacity: 0.25;
-    filter: blur(50px);
-  }
-
-  .about-circle--3 {
-    width: 160px;
-    height: 160px;
-    bottom: 10%;
-    left: 20%;
-    background-color: rgba($color-cta, 0.8);
-  }
 
   // ――――――――――――――――――――――――――――――――――――――――
   .about-inner {

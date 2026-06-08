@@ -1,9 +1,11 @@
 ---
+import SectionDeco from '../common/SectionDeco.astro';
 import { Image } from 'astro:assets';
 import momiImg from '../../assets/images/momi.png';
 import refleImg from '../../assets/images/refle.png';
 ---
 <section class="section menu" id="menu">
+  <SectionDeco />
   <div class="menu-inner inner">
     <div class="section-title">
       <h2 class="title">メニュー</h2>
@@ -69,6 +71,7 @@ import refleImg from '../../assets/images/refle.png';
   // ―――――――――――――――――――――――――――――――――――
   .menu-inner {
     position: relative;
+    z-index: 1;
   }
 
   .menu-deco {
