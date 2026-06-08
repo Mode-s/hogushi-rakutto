@@ -53,8 +53,8 @@ const mapLinkUrl =
 
   .map-wrap {
     position: relative;
-    width: 100%;
     max-width: 900px;
+    width: 100%;
     margin-top: 40px;
     aspect-ratio: 4 / 3;
     border-radius: 16px;
@@ -78,17 +78,13 @@ const mapLinkUrl =
     font-weight: normal;
     letter-spacing: 0.1em;
 
-    @include hover-underline($color-base);
+    @include hover-lift;
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
   @include tb {
     .access-lead {
       text-align: left;
-    }
-
-    .pc-only {
-      display: none;
     }
   }
 
@@ -101,7 +97,7 @@ const mapLinkUrl =
     }
 
     .access-lead {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       line-height: 1.9;
     }
   }
