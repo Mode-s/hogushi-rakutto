@@ -1,9 +1,44 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
----
-<footer class="footer">
-  <div class="footer-inner">
 
+import logo from '../../assets/images/logo.png';
+
+const navItems = [
+  { label: '特徴', href: '#about' },
+  { label: 'メニュー', href: '#menu' },
+  { label: '店舗情報', href: '#info' },
+  { label: 'アクセス', href: '#access' },
+  { label: 'お問い合わせ', href: '#contact', primary: true },
+];
+---
+<footer class="footer" data-footer>
+  <div class="footer-inner">
+    <div class="logo" data-footer-item>
+      <a href="/" class="logo-link">
+        <Image src={ logo } alt="flexshonan" />
+      </a>
+    </div>
+    <div class="wrap" data-footer-item>
+      <div class="company">
+        <p class="name">ほぐし処らくっと</p>
+        <address class="address">〒965-0009</address>
+        <address class="address">福島県会津若松市八角町13-45</address>
+      </div>
+      <ul class="list" data-footer-item>
+        {navItems.map((item) => (
+          <li class="item">
+            <a
+              href={item.href}
+              class:list={['link', { 'is-primary': item.primary }]}
+              data-nav-link
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <small class="copy" data-footer-item>&copy; 2026 ほぐし処らくっと</small>
+  </div>
   </div>
 </footer>
 
@@ -12,6 +47,50 @@ import { Icon } from 'astro-icon/components';
   @use "../../styles/mixins" as *;
 
   // ―――――――――――――――――――――――――――――――――――
+  .footer {
+    width: 100%;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 40px;
+  }
+
+  .footer .logo {
+    width: 80px;
+    height: auto;
+    margin: 30px auto 0;
+  }
+
+  .footer .wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer .company {
+    text-align: center;
+  }
+
+  .footer .list {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+    font-size: $font-nav;
+  }
+
+  .footer .item {
+    @include hover-lift;
+  }
+  
+  .footer .copy {
+    display: flex;
+    justify-content: center;
+    border-top: solid 1px rgb(243, 188, 117);
+    margin-top: 50px;
+    padding: 10px;
+  }
 
   //―――――――――――――――――――――――――――――――――――――― タブレット
   @include tb {
@@ -20,6 +99,10 @@ import { Icon } from 'astro-icon/components';
 
   //―――――――――――――――――――――――――――――――――――――― スマホ
   @include sp {
-
+    .footer .list {
+      text-align: center;
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 </style>
