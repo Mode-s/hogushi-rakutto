@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "福島県会津若松市のプライベートリラクゼーションサロン「ほぐし処らくっと」。もみほぐし・ヘッドケア・リフレクソロジーで心と身体をリラックス。会津若松駅より徒歩23分、駐車場3台完備。",
   // 本番公開時は実際のドメインに変更してください
-  url: "https://example.com",
+  url: "https://hogushi-rakutto.pages.dev/",
   ogImage: "/ogp.png",
   ogImageAlt: "ほぐし処らくっと リラクゼーションサロン",
   lang: "ja",
