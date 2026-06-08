@@ -9,6 +9,7 @@ html {
 
 // ――――――――――――――――――――――――― 
 body {
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
   min-height: 100vh;
   background-color: #fffbea;
   font-size: 1rem;
@@ -54,7 +55,7 @@ button {
 }
 // ――――――――――――――――――――――――― 
 .section-title {
-
+  margin-top: 40px;
 }
 // ――――――――――――――――――――――――― 
 .title {
