@@ -1,10 +1,29 @@
 ---
+
+const infoItems = [
+  { label: '店名', value: 'ほぐし処らくっと' },
+  { label: '住所', value: '〒965-0009　福島県会津若松市八角町13-45' },
+  { label: '最寄駅', value: '会津若松駅・徒歩23分' },
+  { label: '電話番号', value: '0242-93-7248' },
+  { label: '営業時間', value: '10:00 〜 21:00（最終受付20:00）', note: true },
+  { label: '定休日', value: '不定休', note: true },
+  { label: '駐車場', value: '3台', },
+  { label: '席数', value: '3床', },
+];
 ---
 <section class="section info" id="info">
-  <div class="inner info">
+  <div class="info-inner inner">
     <div class="section-title">
-      <h2 class="title"></h2>
+      <h2 class="title">店舗情報</h2>
     </div>
+    <dl class="info-list">
+      {infoItems.map((item) => (
+        <div class="info-row">
+          <dt class="info-label">{item.label}</dt>
+          <dd class="info-value">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
@@ -13,8 +32,58 @@
   @use "../../styles/mixins" as *;
 
   // ―――――――――――――――――――――――――――――――――――
-  .section {
+  .info-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .info .title {
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -0.1em;
+      right: -0.1em;
+      bottom: 0.15em;
+      height: 0.55em;
+      background-color: $color-cta;
+      opacity: 0.75;
+      z-index: -1;
+      border-radius: 2px;
+    }
+  }
+
+  .info-list {
+    max-width: 720px;
+    width: 100%;
+    margin: 50px auto 0;
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px 8px;
+    border-bottom: solid 1px rgba($color-base, 0.15);
+
+    &:first-child {
+      border-top: solid 1px rgba($color-base, 0.15);
+    }
+  }
+
+  .info-label {
+    flex-shrink: 0;
+    width: 140px;
+    font-size: 0.9rem;
+  }
+
+  .info-value {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: normal;
+    line-height: 1.8;
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
@@ -24,6 +93,15 @@
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / スマホ
   @include sp {
+    .info-row {
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px 4px;
+    }
 
+    .info-label {
+      width: auto;
+      font-size: 0.8rem;
+    }
   }
 </style>
