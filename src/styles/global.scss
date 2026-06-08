@@ -5,6 +5,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  overscroll-behavior-y: none; 
 }
 
 // ――――――――――――――――――――――――― 
@@ -21,6 +22,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+  overscroll-behavior-y: none; 
 }
 // ――――――――――――――――――――――――― hamburger-menu展開時スクロール不可にする。
 html:has(body.is-nav-open),
@@ -48,6 +50,7 @@ button {
 .section {
   position: relative;
   padding: 80px 20px;
+  overflow: clip; 
 }
 // ――――――――――――――――――――――――― 
 .inner {
