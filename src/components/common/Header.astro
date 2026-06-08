@@ -186,7 +186,7 @@ const navItems = [
     .nav-wrap {
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0;
       z-index: 5;
       flex-direction: column;
       justify-content: center;
@@ -194,12 +194,16 @@ const navItems = [
       width: 100%;
       height: 100dvh;
       background-color: $color-bg;
-      transform: translateX(100%); // 画面外
-      transition: transform 0.35s ease;
+      transform: translateX(100%);
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.35s ease, visibility 0.35s ease;
     }
     // ――――――――――――――――――――――――――――――――――― nav-wrap-is-open
     .is-open .nav-wrap {
-      transform: translateX(0); // スライドイン
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
     }
     // ――――――――――――――――――――――――――――――――――― header nav-list
     .nav-list {
@@ -234,6 +238,8 @@ const navItems = [
     hamburger?.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('is-nav-open');
   };
+
+  closeMenu();
 
   hamburger?.addEventListener('click', () => {
     const willOpen = !header?.classList.contains('is-open');

@@ -50,6 +50,11 @@ const sp = await getImage({ src: spHero, format: 'webp' });
     z-index: 1;
     opacity: 0.6;
     mix-blend-mode: multiply;
+    overflow: hidden;
+  }
+
+  .hero-picture img {
+    will-change: transform;
   }
 
   .hero-copy {
@@ -58,8 +63,9 @@ const sp = await getImage({ src: spHero, format: 'webp' });
     display: flex;
     align-items: center;
     justify-content: center;
-    left: 200px;
-    bottom: 400px;
+    left: 20%;
+    top: 70%;                      // 画面の高さの70%地点（やや下）
+    transform: translate(-50%, -50%);  // 自分の中心をその点に合わせる
   }
 
   .hero-glow {
@@ -96,13 +102,16 @@ const sp = await getImage({ src: spHero, format: 'webp' });
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
   @include tb {
     .hero-copy {
-      left: 30px;
-      bottom: 200px;
+      left: 40%;
+      top: 70%;  
+    }
+    .hero-text {
+      font-size: 1rem;
     }
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / スマホ
   @include sp {
-
+    
   }
 </style>

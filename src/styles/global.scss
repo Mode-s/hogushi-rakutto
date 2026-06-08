@@ -68,14 +68,28 @@ button {
   &::after {
     content: '';
     position: absolute;
-    left: -0.1em;          // 左右を少しはみ出させるとマーカーらしい
+    left: -0.1em;
     right: -0.1em;
     bottom: 0.15em;
-    height: 0.55em;        // 文字の下半分を塗る
+    height: 0.55em;
     background-color: $color-cta;
-    opacity: 0.75;         // 蛍光ペンっぽい透け感
-    z-index: -1;           // 文字の背面に
-    border-radius: 2px;    // 角を少し丸めると柔らかい
+    opacity: 0.75;
+    z-index: -1;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &.is-inview::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title::after {
+    transform: scaleX(1);
+    transition: none;
   }
 }
 
