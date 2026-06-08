@@ -1,10 +1,34 @@
 ---
+const mapEmbedUrl =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.1648422448!2d139.9467967!3d37.5040301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8aab0062a88093%3A0x6116cecea7e86b81!2z44G744GQ44GX5Yem44KJ44GP44Gj44Go!5e0!3m2!1sja!2sjp!4v1780902325068!5m2!1sja!2sjp';
+
+const mapLinkUrl =
+  'https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B3%B6%E7%9C%8C%E4%BC%9A%E6%B4%A5%E8%8B%A5%E6%9D%BE%E5%B8%82%E5%85%AB%E8%A7%9213-45';
 ---
 <section class="section access" id="access">
   <div class="access-inner inner">
     <div class="section-title">
-      <h2 class="title"></h2>
+      <h2 class="title">アクセス</h2>
     </div>
+    <p class="access-lead">
+      〒965-0009　福島県会津若松市八角町13-45<br class="pc-only" />
+      会津若松駅より徒歩約23分　／　駐車場3台完備
+    </p>
+    <div class="map-wrap">
+      <iframe
+        title="ほぐし処らくっと 地図"
+        src={mapEmbedUrl}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <a
+      class="map-link"
+      href={mapLinkUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >Googleマップで開く</a>
   </div>
 </section>
 
@@ -13,17 +37,72 @@
   @use "../../styles/mixins" as *;
 
   // ―――――――――――――――――――――――――――――――――――
-  .section {
+  .access-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .access-lead {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .map-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 40px;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba($color-base, 0.1);
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+
+  .map-link {
+    display: inline-block;
+    margin-top: 24px;
+    padding-bottom: 2px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+
+    @include hover-underline($color-base);
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
   @include tb {
+    .access-lead {
+      text-align: left;
+    }
 
+    .pc-only {
+      display: none;
+    }
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / スマホ
   @include sp {
+    .map-wrap {
+      margin-top: 32px;
+      border-radius: 12px;
+      aspect-ratio: 1 / 1;
+    }
 
+    .access-lead {
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
   }
 </style>

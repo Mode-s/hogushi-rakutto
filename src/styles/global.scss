@@ -61,7 +61,21 @@ button {
 }
 // ――――――――――――――――――――――――― 
 .title {
+  position: relative;
+  display: inline-block;
 
+  &::after {
+    content: '';
+    position: absolute;
+    left: -0.1em;          // 左右を少しはみ出させるとマーカーらしい
+    right: -0.1em;
+    bottom: 0.15em;
+    height: 0.55em;        // 文字の下半分を塗る
+    background-color: $color-cta;
+    opacity: 0.75;         // 蛍光ペンっぽい透け感
+    z-index: -1;           // 文字の背面に
+    border-radius: 2px;    // 角を少し丸めると柔らかい
+  }
 }
 
 // ――――――――――――――――――――――――― タブレット

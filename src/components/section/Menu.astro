@@ -1,10 +1,64 @@
 ---
+import { Image } from 'astro:assets';
+import momiImg from '../../assets/images/momi.png';
+import refleImg from '../../assets/images/refle.png';
 ---
 <section class="section menu" id="menu">
   <div class="menu-inner inner">
     <div class="section-title">
-      <h2 class="title"></h2>
+      <h2 class="title">メニュー</h2>
     </div>
+    <!-- 装飾用の有機的シェイプ（後から画像挿入） -->
+    <div class="menu-deco" aria-hidden="true">
+      <div class="menu-shape menu-shape--momi">
+        <Image src={momiImg} alt="" />
+      </div>
+      <div class="menu-shape menu-shape--refle">
+        <Image src={refleImg} alt="" />
+      </div>
+    </div>
+
+    <ul class="menu-list">
+      <li class="menu-item menu-item--01">
+        <div class="menu-item-head">
+          <span class="menu-no">01</span>
+          <h3 class="menu-name">もみほぐし<span class="menu-time">60分</span></h3>
+        </div>
+        <p class="menu-price"><span class="menu-num">4,000</span>円</p>
+      </li>
+
+      <li class="menu-item menu-item--02">
+        <div class="menu-item-head">
+          <span class="menu-no">02</span>
+          <h3 class="menu-name">もみほぐし<span class="menu-time">90分</span></h3>
+        </div>
+        <p class="menu-price"><span class="menu-num">5,900</span>円</p>
+      </li>
+
+      <li class="menu-item menu-item--03">
+        <div class="menu-item-head">
+          <span class="menu-no">03</span>
+          <h3 class="menu-name">ヘッドケア<span class="menu-time">45分</span></h3>
+        </div>
+        <p class="menu-price"><span class="menu-num">5,000</span>円</p>
+      </li>
+
+      <li class="menu-item menu-item--04">
+        <div class="menu-item-head">
+          <span class="menu-no">04</span>
+          <h3 class="menu-name">リフレクソロジー<span class="menu-time">30分</span></h3>
+        </div>
+        <p class="menu-price"><span class="menu-num">3,300</span>円</p>
+      </li>
+
+      <li class="menu-item menu-item--05">
+        <div class="menu-item-head">
+          <span class="menu-no">05</span>
+          <h3 class="menu-name">リフレクソロジー<span class="menu-time">60分</span></h3>
+        </div>
+        <p class="menu-price"><span class="menu-num">5,000</span>円</p>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -13,9 +67,130 @@
   @use "../../styles/mixins" as *;
 
   // ―――――――――――――――――――――――――――――――――――
-  .section {
-
+  .menu-inner {
+    position: relative;
   }
+
+  .menu-deco {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .menu-shape {
+    position: absolute;
+    opacity: 0.9;
+    overflow: hidden;
+    background-color: rgba($color-cta, 0.6);
+  }
+
+  // もみほぐし用シェイプ（右上）
+  .menu-shape--momi {
+    width: 280px;
+    height: 280px;
+    top: 40px;
+    right: -70px;
+    transform: rotate(8deg);
+    // 不定形の有機シェイプ（左右で半径を変える）
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  }
+
+  // リフレ用シェイプ（左下）
+  .menu-shape--refle {
+    width: 240px;
+    height: 240px;
+    bottom: 60px;
+    left: -60px;
+    transform: rotate(-10deg);
+    border-radius: 41% 59% 38% 62% / 56% 44% 56% 44%;
+  }
+
+  .menu-list {
+    position: relative;
+    z-index: 1;             // シェイプより前面に
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 760px;
+    margin: 60px auto 0;
+  }
+
+  .menu-item {
+    position: relative;
+    width: min(100%, 500px);
+    padding: 26px 32px;
+    border-radius: 18px 24px 20px 28px; // 角を少し不揃いに
+    background-color: rgba(#ffffff, 0.72);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 10px 30px rgba($color-base, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    // ホバーで傾きが戻りつつ浮き上がる
+    &:hover {
+      transform: rotate(0deg) translateY(-4px);
+      box-shadow: 0 16px 40px rgba($color-base, 0.14);
+    }
+  }
+
+  .menu-item--01 {
+    margin-right: auto;
+    transform: rotate(-1.5deg);
+  }
+  .menu-item--02 {
+    margin-left: auto;
+    transform: rotate(1.5deg);
+  }
+  .menu-item--03 {
+    margin: 0 auto;
+    transform: rotate(-1deg);
+  }
+  .menu-item--04 {
+    margin-left: 48px;
+    transform: rotate(1.2deg);
+  }
+  .menu-item--05 {
+    margin-left: auto;
+    transform: rotate(-2deg);
+  }
+
+  .menu-item-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .menu-no {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: rgba($color-base, 0.45);
+  }
+
+  .menu-name {
+    font-size: 1.15rem;
+  }
+
+  .menu-time {
+    margin-left: 8px;
+    font-size: 0.85rem;
+    font-weight: normal;
+    opacity: 0.8;
+  }
+
+  .menu-price {
+    margin-top: 8px;
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: normal;
+  }
+
+  .menu-num {
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
   @include tb {
