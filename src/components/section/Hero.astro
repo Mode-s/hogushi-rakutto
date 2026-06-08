@@ -1,16 +1,16 @@
 ---
 import { getImage } from 'astro:assets';
 
-// import pcHero from '../../assets/images/pc-hero.png';
-// import tabHero from '../../assets/images/tab-hero.png';
-// import spHero from '../../assets/images/sp-hero.png';
+import pcHero from '../../assets/images/pc-hero.png';
+import tabHero from '../../assets/images/tab-hero.png';
+import spHero from '../../assets/images/sp-hero.png';
 
-// const pc = await getImage({ src: pcHero, format: 'webp' });
-// const tab = await getImage({ src: tabHero, format: 'webp' });
-// const sp = await getImage({ src: spHero, format: 'webp' });
+const pc = await getImage({ src: pcHero, format: 'webp' });
+const tab = await getImage({ src: tabHero, format: 'webp' });
+const sp = await getImage({ src: spHero, format: 'webp' });
 ---
 <section class="hero">
-  <!--<picture class="hero-picture">
+  <picture class="hero-picture">
     <source media="(max-width: 500px)" srcset={sp.src} />
     <source media="(max-width: 768px)" srcset={tab.src} />
     <img
@@ -18,7 +18,7 @@ import { getImage } from 'astro:assets';
       alt=""
       data-hero-image
     />
-  </picture> -->
+  </picture>
 </section>
 
 <style lang="scss">
@@ -28,16 +28,19 @@ import { getImage } from 'astro:assets';
 
   // ――――――――――――――――――――――――――――――――――― hero
   .hero {
-
+    position: relative;
+    width: 100%;
+    height: 100dvh;
   }
   // ――――――――――――――――――――――――――――――――――― hero-picture
   .hero-picture {
-
+    opacity: 0.6;
+    mix-blend-mode: multiply;
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / タブレット
   @include tb {
-
+    
   }
 
   //―――――――――――――――――――――――――――――――――――――― ブレークポイント / スマホ

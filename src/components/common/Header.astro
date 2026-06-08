@@ -1,9 +1,56 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
----
-<header class="header">
-  <div class="header-inner">
 
+import Logo from '../../assets/images/logo.png';
+
+const navItems = [
+  { label: '特徴', href: '#about' },
+  { label: 'メニュー', href: '#menu' },
+  { label: '店舗情報', href: '#info' },
+  { label: 'アクセス', href: '#access' },
+  { label: 'お問い合わせ', href: '#contact', primary: true },
+];
+---
+<header class="header" data-header>
+  <div class="header-inner">
+    <h1 class="logo">
+      <a href="/" class="logo-link">
+        <Image src={Logo} alt="フレックス湘南" />
+      </a>
+    </h1>
+    <button class="hamburger" type="button" aria-label="メニューを開閉する" aria-controls="global-nav" aria-expanded="false" data-hamburger>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    <div class="nav-wrap" id="global-nav" data-nav>
+      <nav class="nav">
+        <ul class="nav-list">
+          {navItems.map((item) => (
+            <li class="nav-item">
+              <a
+                href={item.href}
+                class:list={['nav-link', { 'is-primary': item.primary }]}
+                data-nav-link
+              >{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="cta">
+        <a
+          class="cta-btn"
+          href=""
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon class="cta-icon" name="simple-icons:instagram" />
+        </a>
+        <a class="cta-btn" href="tel:0242937248">
+          <Icon class="cta-icon" name="mdi:phone" />
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -11,21 +58,192 @@ import { Icon } from 'astro-icon/components';
   @use "../../styles/variables" as *;
   @use "../../styles/mixins" as *;
 
-  // ―――――――――――――――――――――――――――――――――――
+  // ――――――――――――――――――――――――――――――――――― header
   .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
+    &.is-scrolled {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(6px);
+    }
   }
-  // ―――――――――――――――――――――――――――――――――――
+  // ――――――――――――――――――――――――――――――――――― header-inner
   .header-inner {
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 40px;
   }
-  //―――――――――――――――――――――――――――――――――――――― タブレット
+  // ――――――――――――――――――――――――――――――――――― header-logo
+  .header .logo {
+    position: relative;
+    max-width: 80px;
+    height: auto;
+    z-index: 10;
+  }
+  // ――――――――――――――――――――――――――――――――――― header- nav-wrap
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  // ――――――――――――――――――――――――――――――――――― header nav-list
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-weight: bold;
+  }
+  // ――――――――――――――――――――――――――――――――――― header nav-link
+  .nav-link {
+    @include hover-lift;
+  }
+  // ――――――――――――――――――――――――――――――――――― header cta
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  // ――――――――――――――――――――――――――――――――――― header cta btn
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #fde287;
+    color: #000;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+
+    @include hover-lift;
+  }
+  // ――――――――――――――――――――――――――――――――――― header cta-icon
+  .cta-icon {
+    width: 20px;
+    height: 20px;
+  }
+  // ―――――――――――――――――――――――――――――――――――PC画面では非表示
+  // ――――――――――――――――――――――――――――――――――― header - hamburger
+  // ――――――――――――――――――――――――――――――――――― header nav-logo
+  // ――――――――――――――――――――――――――――――――――― header cta
+  .header .hamburger,
+  .header .nav-logo,
+  .header .cta {
+    display: none;
+  }
+  
+  //―――――――――――――――――――――――――――――――――――――― タブレット表示
   @include tb {
-
+    // ――――――――――――――――――――――――――――――――――― header - hamburger
+    .header .hamburger {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      gap: 6px;
+      z-index: 10;
+    }
+    // ――――――――――――――――――――――――――――――――――― header - hamburger-bar
+    .hamburger-bar {
+      display: block;
+      width: 50px;
+      height: 2px;
+      margin: 0 auto;
+      background-color: #000;
+      transform-origin: center;
+      transition: transform 0.35s ease;
+    }
+    // ――――――――――――――――――――――――――――――――――― header hamburger-is-open
+    .is-open .hamburger-bar:nth-child(1) {
+      transform: translateY(4px) rotate(20deg);
+    }
+    .is-open .hamburger-bar:nth-child(2) {
+      transform: translateY(-4px) rotate(-20deg);
+    }
+    // ――――――――――――――――――――――――――――――――――― header nav-wrap
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 5;
+      flex-direction: column;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      height: 100dvh;
+      background-color: $color-bg;
+      transform: translateX(100%); // 画面外
+      transition: transform 0.35s ease;
+    }
+    // ――――――――――――――――――――――――――――――――――― nav-wrap-is-open
+    .is-open .nav-wrap {
+      transform: translateX(0); // スライドイン
+    }
+    // ――――――――――――――――――――――――――――――――――― header nav-list
+    .nav-list {
+      flex-direction: column;
+      gap: 24px;
+    }
+    // ――――――――――――――――――――――――――――――――――― header nav-link
+    .nav-link {
+      font-size: 1.1rem;
+    }
+    // ――――――――――――――――――――――――――――――――――― header nav-logo
+    .nav-logo {
+      display: block;
+      width: 120px;
+    }
+    // ――――――――――――――――――――――――――――――――――― header-cta
+    .header .cta {
+      display: flex;
+      gap: 20px;
+    }
   }
 
-  //―――――――――――――――――――――――――――――――――――――― スマホ
+  //―――――――――――――――――――――――――――――――――――――― スマホ表示
   @include sp {
 
   }
 </style>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const hamburger = document.querySelector('[data-hamburger]');
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+
+  const closeMenu = () => {
+    header?.classList.remove('is-open');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-nav-open');
+  };
+
+  hamburger?.addEventListener('click', () => {
+    const willOpen = !header?.classList.contains('is-open');
+    header?.classList.toggle('is-open', willOpen);
+    hamburger.setAttribute('aria-expanded', String(willOpen));
+    document.body.classList.toggle('is-nav-open', willOpen);
+  });
+
+  // メニュー内のリンクを押したら閉じる
+  navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+  // スクロールしたらヘッダーに背景を付ける
+  const onScroll = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 50);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

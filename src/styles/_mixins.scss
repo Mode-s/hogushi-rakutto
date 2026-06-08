@@ -33,11 +33,10 @@
 
 // 少し浮き上がって影をつけるアニメーション
 @mixin hover-lift($y: -4px, $speed: 0.3s) {
-  transition: transform $speed cubic-bezier(0.25, 1, 0.5, 1), box-shadow $speed ease;
+  transition: transform $speed ease;
 
   &:hover {
     transform: translateY($y);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 }
 

@@ -6,6 +6,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
 }
+
 // ――――――――――――――――――――――――― 
 body {
   min-height: 100vh;
@@ -17,6 +18,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+// ――――――――――――――――――――――――― hamburger-menu展開時スクロール不可にする。
+html:has(body.is-nav-open),
+body.is-nav-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 // ――――――――――――――――――――――――― 
 a {
   display: block;
@@ -24,7 +31,8 @@ a {
 }
 // ――――――――――――――――――――――――― 
 img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
